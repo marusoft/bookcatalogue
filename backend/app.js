@@ -1,6 +1,7 @@
 import express from 'express';
 import logger from 'morgan'
 
+import userRouter from './server/Routes/user.routes'
 
 const app = express();
 const port = parseInt(process.env.PORT, 10) || 2021;
@@ -11,9 +12,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 
+app.use('/api/v1', userRouter)
 
-app.get('*', (req, res) => res.status(200).send({
+app.get('/api/v1', (req, res) => res.status(200).send({
   message: 'A simple REST design',
+}));
+
+app.get('*', (req, res) => res.status(404).send({
+  message: 'API not found',
 }));
 
 
