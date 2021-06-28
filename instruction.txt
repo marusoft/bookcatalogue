@@ -1,1 +1,4 @@
 select * from "Users";
+
+to create model along with migration
+sequelize model:create --name BookReaction --attributes isLiked:boolean,likedBy:integer,bookSlug:string
