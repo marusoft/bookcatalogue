@@ -5,7 +5,6 @@ const { User } = datastore;
 
 /**
  * Create User Account
- * @static
  * @param {object} req - The request object
  * @param {object} res - The response object
  * @return {object} JSON representing success message

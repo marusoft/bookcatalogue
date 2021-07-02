@@ -2,3 +2,8 @@ select * from "Users";
 
 to create model along with migration
 sequelize model:create --name BookReaction --attributes isLiked:boolean,likedBy:integer,bookSlug:string
+
+
+To run a specific seed indicate --seed <seed_file_nams.js>:
+
+sequelize db:seed --seed my_seeder_file.js

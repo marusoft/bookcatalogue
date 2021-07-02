@@ -4,9 +4,8 @@ import Helper from "../../Utilities/utils";
 dotenv.config();
 
 const password = process.env.PASSWORD;
-console.log(password);
 const hashedPassword = Helper.hashPassword(password);
-console.log(hashedPassword);
+
 
 export default {
   up: (queryInterface) =>
