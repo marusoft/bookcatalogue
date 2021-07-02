@@ -71,9 +71,9 @@ var uploadBook = function uploadBook(req, res) {
  */
 
 
-var getNumberOfBooks = function getNumberOfBooks(req, res) {
+var getNumberOfFeaturedBooks = function getNumberOfFeaturedBooks(req, res) {
   var books;
-  return regeneratorRuntime.async(function getNumberOfBooks$(_context2) {
+  return regeneratorRuntime.async(function getNumberOfFeaturedBooks$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
         case 0:
@@ -183,7 +183,7 @@ var allBooks = function allBooks(req, res) {
 
 var _default = {
   uploadBook: uploadBook,
-  getNumberOfBooks: getNumberOfBooks,
+  getNumberOfFeaturedBooks: getNumberOfFeaturedBooks,
   allBooks: allBooks
 };
 exports["default"] = _default;

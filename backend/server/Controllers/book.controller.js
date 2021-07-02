@@ -32,7 +32,7 @@ const uploadBook = async (req, res) => {
  * @param {object} res - The response object
  * @return {object} JSON representing success message
  */
-const getNumberOfBooks = async (req, res) => {
+const getNumberOfFeaturedBooks = async (req, res) => {
   try {
     const books = await Book.findAll({ limit: 20 });
     return res.status(200).json({
@@ -89,4 +89,4 @@ const allBooks = async (req, res) => {
   }
 };
 
-export default { uploadBook, getNumberOfBooks, allBooks };
+export default { uploadBook, getNumberOfFeaturedBooks, allBooks };

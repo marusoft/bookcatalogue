@@ -3,14 +3,14 @@ import fileUpload from 'express-fileupload';
 import bookController from '../Controllers/book.controller'
 
 
-const { uploadBook, getNumberOfBooks, allBooks } = bookController;
+const { uploadBook, getNumberOfFeaturedBooks, allBooks } = bookController;
 
 
 const bookRoute = express.Router();
 
 
 bookRoute.post('/uploads', fileUpload({useTempFiles: true}), uploadBook);
-bookRoute.get('/featuredbooks', getNumberOfBooks);
+bookRoute.get('/featuredbooks', getNumberOfFeaturedBooks);
 bookRoute.get('/books', allBooks)
 
 
