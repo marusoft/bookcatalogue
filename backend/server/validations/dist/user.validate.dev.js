@@ -19,7 +19,12 @@ var userValidator = function userValidator(req, res, next) {
   var schema = _joi["default"].object().keys({
     firstname: _joi["default"].string().required().alphanum(),
     lastname: _joi["default"].string().required().alphanum(),
-    email: _joi["default"].string().required().email(),
+    email: _joi["default"].string().required().email({
+      minDomainSegments: 2,
+      tlds: {
+        allow: ['com', 'net']
+      }
+    }),
     password: _joi["default"].string().required()
   });
 

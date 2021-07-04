@@ -12,7 +12,7 @@ const { Book, Rating, BookReaction } = datastore;
 const uploadBook = async (req, res) => {
   try {
     if (!req.files) {
-      return res.status(401).json({
+      return res.status(400).json({
         message: "Please attached some files to upload",
       });
     }
@@ -54,7 +54,7 @@ const getNumberOfFeaturedBooks = async (req, res) => {
 const allBooks = async (req, res) => {
   const regex = /^\d+$/;
   if (!req.query.page.match(regex)) {
-    return res.status(401).json({
+    return res.status(400).json({
       message: "Pages does not match",
     });
   }
@@ -103,13 +103,13 @@ const getSummationOfCartItem = async (req, res) => {
     let subTotal = 0;
     for (let i = 0; i < result.length; i++) {
       if (Number(result[i].amount) !== Number(cart[i].amount)) {
-        return res.status(401).json({
+        return res.status(400).json({
           message: (slug) =>
             `Looks like the amount of ${slug} has been tampered with (cart[i].slug)`,
         });
       }
       if (result[i].quantity_available < +cart[i].quantity_chosen) {
-        return res.status(401).json({
+        return res.status(400).json({
           message: (slug) =>
             `you have selected more than we have in stock for ${slug}`,
         });
@@ -161,13 +161,13 @@ const addToCart = async (req, res) => {
     try {
       const result = await Book.findOne({ slug: newCart.slug });
       if (result.quantity_available < +newCart.quantity_chosen) {
-        return res.status(401).json({
+        return res.status(400).json({
           message: (slug) =>
             `you have selected more than we have in stock for ${slug} ${newCart.slug}`,
         });
       }
       if (+result.amount !== +newCart.amount) {
-        return res.status(401).json({
+        return res.status(400).json({
           message: (slug) =>
             `(slug) => Looks like the amount of ${slug} has been tampered with, ${newCart.slug}`,
         });

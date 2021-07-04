@@ -17,7 +17,7 @@ const createUser = async (req, res) => {
     });
     if (savedUser) {
       return res.status(409).json({
-        error: `User with ${savedUser.email} already exist, please login`,
+        error: `User with this email already exist, please login`,
       });
     }
     const hashedPassword = Helper.hashPassword(password);
@@ -71,7 +71,7 @@ const loginUser = async (req, res) => {
         status: "success",
         data: {
           firstname,
-          message: `${findIfUserExist.email} successfully signed in`,
+          message: `Account successfully signed in`,
           token: `Bearer ${token}`,
           id,
         },

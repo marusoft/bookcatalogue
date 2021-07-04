@@ -40,7 +40,7 @@ var uploadBook = function uploadBook(req, res) {
             break;
           }
 
-          return _context.abrupt("return", res.status(401).json({
+          return _context.abrupt("return", res.status(400).json({
             message: "Please attached some files to upload"
           }));
 
@@ -131,7 +131,7 @@ var allBooks = function allBooks(req, res) {
             break;
           }
 
-          return _context3.abrupt("return", res.status(401).json({
+          return _context3.abrupt("return", res.status(400).json({
             message: "Pages does not match"
           }));
 
@@ -224,7 +224,7 @@ var getSummationOfCartItem = function getSummationOfCartItem(req, res) {
             break;
           }
 
-          return _context4.abrupt("return", res.status(401).json({
+          return _context4.abrupt("return", res.status(400).json({
             message: function message(slug) {
               return "Looks like the amount of ".concat(slug, " has been tampered with (cart[i].slug)");
             }
@@ -236,7 +236,7 @@ var getSummationOfCartItem = function getSummationOfCartItem(req, res) {
             break;
           }
 
-          return _context4.abrupt("return", res.status(401).json({
+          return _context4.abrupt("return", res.status(400).json({
             message: function message(slug) {
               return "you have selected more than we have in stock for ".concat(slug);
             }
@@ -327,7 +327,7 @@ var addToCart = function addToCart(req, res) {
                       break;
                     }
 
-                    return _context5.abrupt("return", res.status(401).json({
+                    return _context5.abrupt("return", res.status(400).json({
                       message: function message(slug) {
                         return "you have selected more than we have in stock for ".concat(slug, " ").concat(newCart.slug);
                       }
@@ -339,7 +339,7 @@ var addToCart = function addToCart(req, res) {
                       break;
                     }
 
-                    return _context5.abrupt("return", res.status(401).json({
+                    return _context5.abrupt("return", res.status(400).json({
                       message: function message(slug) {
                         return "(slug) => Looks like the amount of ".concat(slug, " has been tampered with, ").concat(newCart.slug);
                       }

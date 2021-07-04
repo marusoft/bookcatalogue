@@ -6,7 +6,7 @@ const userValidator = (req, res, next) => {
   const schema = Joi.object().keys({
     firstname: Joi.string().required().alphanum(),
     lastname: Joi.string().required().alphanum(),
-    email: Joi.string().required().email(),
+    email: Joi.string().required().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }),
     password: Joi.string().required(),
   });
 
