@@ -7,6 +7,8 @@ exports["default"] = void 0;
 
 var _models = _interopRequireDefault(require("../database/models"));
 
+var _app = _interopRequireDefault(require("../../app"));
+
 var _uploadUtils = require("../Utilities/uploadUtils");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
@@ -168,7 +170,9 @@ var allBooks = function allBooks(req, res) {
           allBooksResult = _context3.sent;
           return _context3.abrupt("return", res.status(200).json({
             message: "Books successfully retrieved",
-            allBooksResult: allBooksResult
+            data: {
+              allBooksResult: allBooksResult
+            }
           }));
 
         case 20:
@@ -260,7 +264,9 @@ var getSummationOfCartItem = function getSummationOfCartItem(req, res) {
             cart: cart
           };
           cartObj.subtotal = subTotal;
-          redisClient.set(req.user.payload.firstname, JSON.stringify(cartObj), "EX", 86400);
+
+          _app["default"].set(req.user.payload, JSON.stringify(cartObj), "EX", 86400);
+
           return _context4.abrupt("return", res.status(200).json({
             message: function message(slug) {
               return "you have selected more than we have in stock for ".concat(slug, " ").concat(cart[i].slug);
@@ -296,7 +302,8 @@ var addToCart = function addToCart(req, res) {
       switch (_context6.prev = _context6.next) {
         case 0:
           newCart = req.body;
-          redisClient.get(req.user.payload, function _callee(err, cart) {
+
+          _app["default"].get(req.user.payload, function _callee(err, cart) {
             var result;
             return regeneratorRuntime.async(function _callee$(_context5) {
               while (1) {
@@ -353,9 +360,11 @@ var addToCart = function addToCart(req, res) {
 
                   case 15:
                     cartObj.subtotal += Number(newCart.amount) * Number(newCart.quantity_chosen);
-                    redisClient.set(req.user.payload.firstname, JSON.stringify(cartObj), "EX", 1200);
+
+                    _app["default"].set(req.user.payload.firstname, JSON.stringify(cartObj), "EX", 1200);
+
                     return _context5.abrupt("return", res.status(200).json({
-                      message: "Reques successfully retrieved",
+                      message: "Request successfully retrieved",
                       cartObj: cartObj
                     }));
 

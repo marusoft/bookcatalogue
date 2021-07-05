@@ -1,4 +1,5 @@
 import datastore from "../database/models";
+import redisClient from "../../app" 
 import { upload, removeFolder } from "../Utilities/uploadUtils";
 
 const { Book, Rating, BookReaction } = datastore;
@@ -79,7 +80,9 @@ const allBooks = async (req, res) => {
     });
     return res.status(200).json({
       message: "Books successfully retrieved",
-      allBooksResult,
+      data: {
+        allBooksResult,
+      }
     });
   } catch (error) {
     return res.status(500).json({
@@ -123,7 +126,7 @@ const getSummationOfCartItem = async (req, res) => {
     let cartObj = { cart };
     cartObj.subtotal = subTotal;
     redisClient.set(
-      req.user.payload.firstname,
+      req.user.payload,
       JSON.stringify(cartObj),
       "EX",
       86400
@@ -180,13 +183,13 @@ const addToCart = async (req, res) => {
       cartObj.subtotal +=
         Number(newCart.amount) * Number(newCart.quantity_chosen);
       redisClient.set(
-        req.user.payload.firstname,
+        req.user.payload,
         JSON.stringify(cartObj),
         "EX",
         1200
       );
       return res.status(200).json({
-        message: "Reques successfully retrieved",
+        message: "Request successfully retrieved",
         cartObj,
       });
     } catch (error) {

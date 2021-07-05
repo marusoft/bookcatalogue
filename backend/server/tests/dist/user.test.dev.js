@@ -127,6 +127,7 @@ describe("Users Test", function () {
         res.body.should.be.an("object");
         expect(res.body.status).to.equal("success");
         expect(res.body.data.message).to.equal("Account successfully signed in");
+        console.log("res.body", res.body);
         done();
       });
     });

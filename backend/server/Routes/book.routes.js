@@ -27,7 +27,7 @@ bookRoute.post("/uploads", fileUpload({ useTempFiles: true }), uploadBook);
 bookRoute.get("/featuredbooks", getNumberOfFeaturedBooks);
 bookRoute.get("/books", allBooks);
 bookRoute.get("/books/:id", bookInfo);
-bookRoute.post("/carts", getSummationOfCartItem);
+bookRoute.post("/carts", verifyUserToken, getSummationOfCartItem);
 bookRoute.post('/addtocart', verifyUserToken, addToCart);
 bookRoute.post('/rating', verifyUserToken, bookRating);
 bookRoute.post('/ratings', verifyUserToken, validateRating, bookRating);
